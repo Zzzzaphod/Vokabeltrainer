@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dataInput.DataInputFragment">
+
+<!--    <TextView-->
+<!--        android:id="@+id/textview_title"-->
+<!--        style="@style/textViewStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Titel"-->
+<!--        android:textSize="35sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/linearLayout_vocabulary_german"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout_vocabulary_german"
+        style="@style/linearLayoutVerticalStyle"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout_vocabulary_english"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textview_vocabulary_german"
+            style="@style/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deutsch"/>
+
+        <EditText
+            android:id="@+id/edittext_vocabulary_german"
+            style="@style/editTextStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_vocabulary_english"
+        style="@style/linearLayoutVerticalStyle"
+        app:layout_constraintBottom_toTopOf="@id/button_submit_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_vocabulary_german">
+
+        <TextView
+            android:id="@+id/textview_vocabulary_english"
+            style="@style/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Englisch" />
+
+        <EditText
+            android:id="@+id/edittext_vocabulary_english"
+            style="@style/editTextStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_submit_data"
+        style="@style/buttonStyle"
+        android:text="Einfügen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_vocabulary_english" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
