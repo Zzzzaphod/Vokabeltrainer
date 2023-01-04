@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.appzzzz.vokabeltrainer.databinding.ActivityMainBinding
+import com.appzzzz.vokabeltrainer.stream.CsvImport
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val vocabularyList = CsvImport.CsvImport.getVocabularyList(assets)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

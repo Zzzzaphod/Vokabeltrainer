@@ -39,18 +39,15 @@ class DataInputFragment : Fragment() {
         val editTextVocabularyGerman: EditText = binding.edittextVocabularyGerman
         val editTextVocabularyEnglish: EditText = binding.edittextVocabularyEnglish
 
-        val firstVoc = Vocabulary("Katze", "cat")
-        val secondVoc = Vocabulary("Hund", "dog")
-        val thirdVoc = Vocabulary("Vogel", "bird")
-        val fourthVoc = Vocabulary("Huhn", "chicken")
 
-        val dbHelper = DbHelper(requireContext(), "Vocabularies")
-        dbHelper.insertVoc(firstVoc)
-        dbHelper.insertVoc(secondVoc)
-        dbHelper.insertVoc(thirdVoc)
-        dbHelper.insertVoc(fourthVoc)
+        val dbHelper = DbHelper(requireContext())
+        dbHelper.insertVoc(Vocabulary("Katze", "cat"))
+        dbHelper.insertVoc(Vocabulary("Hund", "dog"))
+        dbHelper.insertVoc(Vocabulary("Vogel", "bird"))
+        dbHelper.insertVoc(Vocabulary("Huhn", "chicken"))
 
-        Log.i("DataDirectory:", Environment.getDataDirectory().toString() + "/Vocabularies")
+        dbHelper.getVocabularyList()
+
 //        val vocDatabase : SQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(dbFile,null)
 //        vocDatabase.execSQL("create table if not exists vocabulary (germanVoc VARCHAR, englishVoc VARCHAR)")
 //        vocDatabase.execSQL("insert into vocabulary (germanVoc, englishVoc) values ('Hund', 'dog')")
