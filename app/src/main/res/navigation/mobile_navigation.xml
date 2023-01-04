@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_multiple_choice">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.appzzzz.vokabeltrainer.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_multiple_choice"
+        android:name="com.appzzzz.vokabeltrainer.ui.multipleChoice.MultipleChoiceFragment"
+        android:label="@string/title_multiple_choice"
+        tools:layout="@layout/fragment_multiple_choice" />
 
     <fragment
         android:id="@+id/navigation_data_input"

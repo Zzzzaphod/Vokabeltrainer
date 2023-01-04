@@ -8,7 +8,7 @@ import java.io.InputStreamReader
 object CsvImport {
     class CsvImport {
         companion object {
-            fun getVocabularyList(assets: AssetManager): List<Vocabulary> {
+            fun getVocabularyList(assets: AssetManager): MutableList<Vocabulary> {
                 val vocFile = assets.open(VocabularyCsv.fileName)
                 val inputStreamReader = InputStreamReader(vocFile)
                 val reader = BufferedReader(inputStreamReader)
@@ -18,7 +18,7 @@ object CsvImport {
                     .map {
                         val (germanVoc, englishVoc) = it.split(';', ignoreCase = false, limit = 2)
                         Vocabulary(germanVoc, englishVoc)
-                    }.toList()
+                    }.toMutableList()
             }
 
             val fileName = "Vokabeln.csv"

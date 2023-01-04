@@ -1,10 +1,10 @@
-package com.appzzzz.vokabeltrainer.ui.home
+package com.appzzzz.vokabeltrainer.ui.multipleChoice
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class MultipleChoiceViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

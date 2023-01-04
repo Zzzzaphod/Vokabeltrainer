@@ -19,9 +19,9 @@
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
-        android:id="@+id/linearLayout_vocabulary_german"
+        android:id="@+id/layout_vocabulary_german"
         style="@style/linearLayoutVerticalStyle"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout_vocabulary_english"
+        app:layout_constraintBottom_toTopOf="@id/layout_vocabulary_english"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,12 +41,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout_vocabulary_english"
+        android:id="@+id/layout_vocabulary_english"
         style="@style/linearLayoutVerticalStyle"
         app:layout_constraintBottom_toTopOf="@id/button_submit_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_vocabulary_german">
+        app:layout_constraintTop_toBottomOf="@+id/layout_vocabulary_german">
 
         <TextView
             android:id="@+id/textview_vocabulary_english"
@@ -69,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_vocabulary_english" />
+        app:layout_constraintTop_toBottomOf="@id/layout_vocabulary_english" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
