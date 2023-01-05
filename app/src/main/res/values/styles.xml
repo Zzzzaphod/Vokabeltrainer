@@ -13,8 +13,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="buttonStyle">
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="textAllCaps">false</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_margin">8dp</item>
         <item name="android:textAlignment">center</item>
