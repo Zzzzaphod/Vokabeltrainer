@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     var vocabularyDict: VocabularyDict? = null
     var vocabularyList : MutableList<Vocabulary>? = null
-    var dbHelper : DbHelper? = null
+    //var dbHelper : DbHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +33,16 @@ class MainActivity : AppCompatActivity() {
         vocabularyList = CsvImport.CsvImport.getVocabularyList(assets)
         vocabularyDict = VocabularyDict(vocabularyList!!)
 
-        dbHelper = DbHelper(this)
+//        dbHelper = DbHelper(this)
 
 //        dbHelper.insertVoc(Vocabulary("Katze", "cat"))
 //        dbHelper.insertVoc(Vocabulary("Hund", "dog"))
 //        dbHelper.insertVoc(Vocabulary("Vogel", "bird"))
 //        dbHelper.insertVoc(Vocabulary("Huhn", "chicken"))
 
-        dbHelper!!.getVocabularyList()
+//        dbHelper!!.getVocabularyList()
 
-        dbHelper!!.importVocs(vocabularyList!!)
+//        dbHelper!!.importVocs(vocabularyList!!)
 
         Log.i("vocabularyList", "$vocabularyList")
     }
