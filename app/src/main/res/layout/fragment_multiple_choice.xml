@@ -3,88 +3,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.multipleChoice.MultipleChoiceFragment">
+    android:layout_height="wrap_content"
+    tools:context=".ui.multipleChoice.MultipleChoiceFragment"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_multiple_choice_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/layout_multiple_choice_answers"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/layout_multiple_choice_answers">
+        android:layout_marginTop="20dp">
 
 
         <TextView
             android:id="@+id/textview_multiple_choice_question"
             style="@style/textViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_multiple_choice_answers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/layout_multiple_choice_points"
         app:layout_constraintTop_toBottomOf="@id/layout_multiple_choice_question"
-        app:layout_constraintBottom_toTopOf="@id/layout_multiple_choice_answer0">
+        tools:layout_editor_absoluteX="0dp">
 
 
         <Button
             android:id="@+id/button_multiple_choice_answer1"
-            style="@style/buttonStyle"
-            app:layout_constraintTop_toTopOf="parent"
+            style="@style/buttonAnswersStyle"
+            app:layout_constraintBottom_toTopOf="@id/button_multiple_choice_answer2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_multiple_choice_answer2"
-            app:layout_constraintBottom_toTopOf="@id/button_multiple_choice_answer3"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/button_multiple_choice_answer2"
-            style="@style/buttonStyle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/button_multiple_choice_answer1"
+            style="@style/buttonAnswersStyle"
+            app:layout_constraintBottom_toTopOf="@id/button_multiple_choice_answer3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_multiple_choice_answer4"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer1" />
+
         <Button
             android:id="@+id/button_multiple_choice_answer3"
-            style="@style/buttonStyle"
-            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer1"
+            style="@style/buttonAnswersStyle"
+            app:layout_constraintBottom_toTopOf="@id/button_multiple_choice_answer4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_multiple_choice_answer4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer2" />
+
         <Button
             android:id="@+id/button_multiple_choice_answer4"
-            style="@style/buttonStyle"
-            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer2"
-            app:layout_constraintStart_toEndOf="@id/button_multiple_choice_answer3"
+            style="@style/buttonAnswersStyle"
+            app:layout_constraintBottom_toBottomOf="@id/button_multiple_choice_answer0"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_multiple_choice_answer0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout_multiple_choice_answers">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer3" />
+
         <Button
             android:id="@+id/button_multiple_choice_answer0"
-            style="@style/buttonStyle"
+            style="@style/buttonAnswersStyle"
             android:layout_width="300dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_multiple_choice_answer4" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_multiple_choice_points"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout_multiple_choice_answer0"
+        app:layout_constraintTop_toBottomOf="@id/layout_multiple_choice_answers"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
         >
 

@@ -1,5 +1,6 @@
 package com.appzzzz.vokabeltrainer.ui.multipleChoice
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,6 +30,8 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     private val vocabularyDict get() = mainActivity!!.vocabularyDict
 
+    private var highScore: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +39,10 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
     ): View {
         _binding = FragmentMultipleChoiceBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val sharedPreference = mainActivity.getSharedPreferences("MULTIPLE_CHOICE", Context.MODE_PRIVATE)
+
+        highScore = sharedPreference.getInt(getString(R.string.shared_prefs_high_score),0)
 
         binding.buttonMultipleChoiceAnswer0.setOnClickListener(this)
         binding.buttonMultipleChoiceAnswer1.setOnClickListener(this)

@@ -1,5 +1,6 @@
 package com.appzzzz.vokabeltrainer
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupActionBar()
+
+        val sharedPreference = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE)
+        sharedPreference.getInt("highScore", 0)
+        var editor = sharedPreference.edit()
+
+        editor.commit()
 
         vocabularyList = CsvImport.CsvImport.getVocabularyList(assets)
         vocabularyDict = VocabularyDict(vocabularyList!!)

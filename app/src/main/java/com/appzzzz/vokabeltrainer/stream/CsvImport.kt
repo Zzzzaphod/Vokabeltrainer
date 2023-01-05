@@ -16,7 +16,7 @@ object CsvImport {
                 return reader.lineSequence()
                     .filter { it.isNotBlank() }
                     .map {
-                        val (germanVoc, englishVoc) = it.split(';', ignoreCase = false, limit = 2)
+                        val (englishVoc, germanVoc) = it.split(';', ignoreCase = false, limit = 2)
                         Vocabulary(germanVoc, englishVoc)
                     }.toMutableList()
             }

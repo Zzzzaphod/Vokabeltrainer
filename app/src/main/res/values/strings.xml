@@ -4,4 +4,5 @@
     <string name="title_multiple_choice">Multiple Choice</string>
     <string name="title_data_input">Dateneingabe</string>
     <string name="title_voc_list">Vokabelliste</string>
+    <string name="shared_prefs_high_score">highScoreMultipleChoice</string>
 </resources>

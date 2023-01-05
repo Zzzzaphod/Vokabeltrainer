@@ -2,7 +2,7 @@
 <resources>
     <style name="textViewStyle">
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -17,10 +17,18 @@
         <item name="android:layout_height">100dp</item>
         <item name="fontFamily">sans-serif</item>
         <item name="textAllCaps">false</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:layout_margin">8dp</item>
         <item name="android:textAlignment">center</item>
     </style>
+    <style name="buttonAnswersStyle"
+        parent="buttonStyle">
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
     <style name="linearLayoutVerticalStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
