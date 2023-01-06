@@ -3,7 +3,8 @@ package com.appzzzz.vokabeltrainer.data
 import android.util.Log
 
 class VocabularyDict(vocList: MutableList<Vocabulary>) {
-    private lateinit var vocabularyList: MutableList<Vocabulary>
+    private var vocabularyList: MutableList<Vocabulary>
+    private var vocabularyLearnList: MutableList<Vocabulary>
     private var _selectedVocabulary: Vocabulary? = null
     private var _falseVocabularies: MutableList<Vocabulary>? = null
 
@@ -11,21 +12,45 @@ class VocabularyDict(vocList: MutableList<Vocabulary>) {
 
     init {
         vocabularyList = vocList
+        vocabularyLearnList = vocabularyList.toMutableList()
+        vocabularyLearnList.shuffle()
     }
 
-    fun selectRandomVocabulary() : Vocabulary? {
-        _selectedVocabulary = vocabularyList.random()
+    fun selectRandomLearnVocabulary() : Vocabulary? {
+        if(vocabularyLearnList.size <= 0){
+            return null
+        }
+        _selectedVocabulary = vocabularyLearnList.random()
+        vocabularyLearnList.remove(_selectedVocabulary)
+
         _falseVocabularies = null
         return _selectedVocabulary
     }
 
-    fun selectFalseVocabularies(cntAnswers: Int) : List<Vocabulary>? {
+    fun resetVocabularyLearnList(vocList: MutableList<Vocabulary>) {
+        vocabularyLearnList = vocabularyList.toMutableList()
+        vocabularyLearnList.shuffle()
+    }
+
+    fun getCopyOfVocabularyList(type: String="") : MutableList<Vocabulary> {
+        if(type == "")
+            return vocabularyList.toMutableList()
+        else
+            return vocabularyList.filter {v -> v.vocabularyType == type}.toMutableList()
+    }
+
+    fun selectFalseVocabularies(cntAnswers: Int, sameType: Boolean=false) : List<Vocabulary>? {
         if(_selectedVocabulary==null) {
             Log.e("selectFalseAnswers:", "No Vocabulary selected (selectedVocabulary == null)")
             return null
         }
-
-        val vocabularyListCopy = vocabularyList.toMutableList()
+        var vocabularyListCopy: MutableList<Vocabulary>
+        if(sameType) {
+            vocabularyListCopy = getCopyOfVocabularyList(selectedVocabulary!!.vocabularyType)
+        }
+        else{
+            vocabularyListCopy = getCopyOfVocabularyList()
+        }
         _falseVocabularies = mutableListOf<Vocabulary>()
         vocabularyListCopy.remove(_selectedVocabulary)
 
@@ -39,8 +64,8 @@ class VocabularyDict(vocList: MutableList<Vocabulary>) {
     }
 
     fun selectAndShuffleAllPossibleVocabularies(cntAnswers: Int) : List<Vocabulary>? {
-        selectRandomVocabulary()
-        selectFalseVocabularies(cntAnswers)
+        selectRandomLearnVocabulary()
+        selectFalseVocabularies(cntAnswers, true)
 
         if(selectedVocabulary==null){
             Log.e("selectAllVocabularies", "No Vocabulary selected (selectedVocabulary == null)")

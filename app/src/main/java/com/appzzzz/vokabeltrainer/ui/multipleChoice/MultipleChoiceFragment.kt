@@ -1,6 +1,7 @@
 package com.appzzzz.vokabeltrainer.ui.multipleChoice
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,17 +25,19 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var points = 0
+
+    private var correctVocsSinceLastFault = 0
+
     private val mainActivity get() = (activity as MainActivity)
 
     private val vocabularyDict get() = mainActivity!!.vocabularyDict
 
     private var highScore: Int = 0
 
-    private var points = 0
+    private lateinit var sharedPreferencesMultipleChoice: SharedPreferences
 
-    private var presentationTime: Long = 0
-
-    private var cntSeriesOfRightAnswers = 0
+    private var startTime: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,11 +47,11 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
         _binding = FragmentMultipleChoiceBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val sharedPreference = mainActivity.getSharedPreferences("MULTIPLE_CHOICE", Context.MODE_PRIVATE)
+        sharedPreferencesMultipleChoice = mainActivity.getSharedPreferences("MULTIPLE_CHOICE", Context.MODE_PRIVATE)
 
-        highScore = sharedPreference.getInt(getString(R.string.shared_prefs_high_score),0)
+        highScore = sharedPreferencesMultipleChoice.getInt(getString(R.string.shared_prefs_high_score),0)
 
-        binding.buttonMultipleChoiceAnswer0.setOnClickListener(this)
+        //binding.buttonMultipleChoiceAnswer0.setOnClickListener(this)
         binding.buttonMultipleChoiceAnswer1.setOnClickListener(this)
         binding.buttonMultipleChoiceAnswer2.setOnClickListener(this)
         binding.buttonMultipleChoiceAnswer3.setOnClickListener(this)
@@ -60,14 +63,13 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     fun startMultipleChoiceGame() {
         points = 0
+        correctVocsSinceLastFault = 0
         setNewQuestion()
     }
 
     fun setNewQuestion() {
 
-        presentationTime = System.nanoTime()
-
-        if(vocabularyDict?.selectRandomVocabulary()==null){
+        if(vocabularyDict?.selectRandomLearnVocabulary()==null){
             Log.e("setNewQuestion", "No vocabulary selected! (selectedVocabulary == null)")
             return
         }
@@ -79,7 +81,9 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
         binding.buttonMultipleChoiceAnswer2.text = allPossibleAnswerStrings!![1]
         binding.buttonMultipleChoiceAnswer3.text = allPossibleAnswerStrings!![2]
         binding.buttonMultipleChoiceAnswer4.text = allPossibleAnswerStrings!![3]
-        binding.buttonMultipleChoiceAnswer0.text = "Keine der Antwortmöglichkeiten"
+        //binding.buttonMultipleChoiceAnswer0.text = "Keine der Antwortmöglichkeiten"
+
+        startTime = System.currentTimeMillis()
 
     }
 
@@ -87,13 +91,36 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     }
 
+    fun calculatePoints() : Int {
+        var secondsToAnswer = 5
+        var timeDiff = System.currentTimeMillis()-startTime
+        timeDiff /= 1000
+        timeDiff = Math.min(timeDiff, secondsToAnswer.toLong())
+
+        return (secondsToAnswer+1-timeDiff).toInt()*correctVocsSinceLastFault
+
+    }
     fun addPoints(points: Int) {
         this.points += points
+        if(this.points>this.highScore)
+            setHighScore(this.points)
         showPoints()
     }
 
+    fun setPointsToZero() {
+        this.points = 0
+        showPoints()
+    }
+
+    fun setHighScore(highScore: Int) {
+        this.highScore = highScore
+        val editor = sharedPreferencesMultipleChoice.edit()
+        editor.putInt(getString(R.string.shared_prefs_high_score),highScore)
+        editor.commit()
+    }
+
     fun showPoints() {
-        binding.textviewPoints.text = "$points Punkte (HighScore: $highScore)"
+        binding.textviewPoints.text = "$points Punkte (Highscore: $highScore)"
     }
 
 
@@ -106,10 +133,15 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
         if(v is Button){
             val answerString = (v as Button).text
             if(answerString == vocabularyDict?.selectedVocabulary?.englishVocabulary){
-                addPoints(1)
+                correctVocsSinceLastFault += 1
+                var points = calculatePoints()
+                addPoints(points)
+            }
+            else{
+                correctVocsSinceLastFault = 0
+                setPointsToZero()
             }
             setNewQuestion()
         }
-
     }
 }
