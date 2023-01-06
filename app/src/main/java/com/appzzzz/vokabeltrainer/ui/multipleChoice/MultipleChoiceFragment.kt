@@ -24,13 +24,17 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var points = 0
-
     private val mainActivity get() = (activity as MainActivity)
 
     private val vocabularyDict get() = mainActivity!!.vocabularyDict
 
     private var highScore: Int = 0
+
+    private var points = 0
+
+    private var presentationTime: Long = 0
+
+    private var cntSeriesOfRightAnswers = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +65,8 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     fun setNewQuestion() {
 
+        presentationTime = System.nanoTime()
+
         if(vocabularyDict?.selectRandomVocabulary()==null){
             Log.e("setNewQuestion", "No vocabulary selected! (selectedVocabulary == null)")
             return
@@ -87,7 +93,7 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
     }
 
     fun showPoints() {
-        binding.textviewPoints.text = "$points Punkte"
+        binding.textviewPoints.text = "$points Punkte (HighScore: $highScore)"
     }
 
 
@@ -104,5 +110,6 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
             }
             setNewQuestion()
         }
+
     }
 }
