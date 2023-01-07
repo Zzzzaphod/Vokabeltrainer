@@ -1,6 +1,7 @@
 package com.appzzzz.vokabeltrainer
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,6 +19,7 @@ import com.appzzzz.vokabeltrainer.stream.CsvImport
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    public lateinit var sharedPreferences: SharedPreferences
 
     var vocabularyDict: VocabularyDict? = null
     var vocabularyList : MutableList<Vocabulary>? = null
@@ -31,25 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBar()
 
-        val sharedPreference = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE)
-        sharedPreference.getInt("highScore", 0)
-        var editor = sharedPreference.edit()
-
-        editor.commit()
-
         vocabularyList = CsvImport.CsvImport.getVocabularyList(assets)
         vocabularyDict = VocabularyDict(vocabularyList!!)
 
-//        dbHelper = DbHelper(this)
-
-//        dbHelper.insertVoc(Vocabulary("Katze", "cat"))
-//        dbHelper.insertVoc(Vocabulary("Hund", "dog"))
-//        dbHelper.insertVoc(Vocabulary("Vogel", "bird"))
-//        dbHelper.insertVoc(Vocabulary("Huhn", "chicken"))
-
-//        dbHelper!!.getVocabularyList()
-
-//        dbHelper!!.importVocs(vocabularyList!!)
+        sharedPreferences = getSharedPreferences(getString(R.string.shared_prefs_title), Context.MODE_PRIVATE)
 
         Log.i("vocabularyList", "$vocabularyList")
     }
@@ -64,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_multiple_choice,
-//                R.id.navigation_data_input,
+                R.id.navigation_spelling,
 //                R.id.navigation_voc_list
             )
         )

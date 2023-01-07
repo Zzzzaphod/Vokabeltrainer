@@ -6,10 +6,10 @@
         android:icon="@drawable/ic_multiple_choice"
         android:title="@string/title_multiple_choice" />
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_data_input"-->
-<!--        android:icon="@drawable/ic_data_input_black_24dp"-->
-<!--        android:title="@string/title_data_input" />-->
+    <item
+        android:id="@+id/navigation_spelling"
+        android:icon="@drawable/ic_data_input_black_24dp"
+        android:title="@string/title_spelling" />
 
 <!--    <item-->
 <!--        android:id="@+id/navigation_voc_list"-->

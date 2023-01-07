@@ -15,9 +15,10 @@ import com.appzzzz.vokabeltrainer.MainActivity
 import com.appzzzz.vokabeltrainer.R
 import com.appzzzz.vokabeltrainer.data.Vocabulary
 import com.appzzzz.vokabeltrainer.databinding.FragmentMultipleChoiceBinding
+import com.appzzzz.vokabeltrainer.ui.BaseFragment
 import kotlin.random.Random
 
-class MultipleChoiceFragment : Fragment(), OnClickListener {
+class MultipleChoiceFragment : BaseFragment(), OnClickListener {
 
     private var _binding: FragmentMultipleChoiceBinding? = null
 
@@ -29,13 +30,9 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     private var correctVocsSinceLastFault = 0
 
-    private val mainActivity get() = (activity as MainActivity)
-
-    private val vocabularyDict get() = mainActivity!!.vocabularyDict
-
     private var highScore: Int = 0
 
-    private lateinit var sharedPreferencesMultipleChoice: SharedPreferences
+    //private lateinit var sharedPreferencesMultipleChoice: SharedPreferences
 
     private var startTime: Long = 0
 
@@ -47,9 +44,8 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
         _binding = FragmentMultipleChoiceBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        sharedPreferencesMultipleChoice = mainActivity.getSharedPreferences("MULTIPLE_CHOICE", Context.MODE_PRIVATE)
 
-        highScore = sharedPreferencesMultipleChoice.getInt(getString(R.string.shared_prefs_high_score),0)
+        highScore = sharedPreferences.getInt(getString(R.string.shared_prefs_high_score),0)
 
         //binding.buttonMultipleChoiceAnswer0.setOnClickListener(this)
         binding.buttonMultipleChoiceAnswer1.setOnClickListener(this)
@@ -114,7 +110,7 @@ class MultipleChoiceFragment : Fragment(), OnClickListener {
 
     fun setHighScore(highScore: Int) {
         this.highScore = highScore
-        val editor = sharedPreferencesMultipleChoice.edit()
+        val editor = sharedPreferences.edit()
         editor.putInt(getString(R.string.shared_prefs_high_score),highScore)
         editor.commit()
     }

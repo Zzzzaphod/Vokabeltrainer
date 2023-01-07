@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dataInput.DataInputFragment">
+    tools:context=".ui.spelling.SpellingFragment">
 
 <!--    <TextView-->
 <!--        android:id="@+id/textview_title"-->
@@ -19,9 +19,9 @@
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
-        android:id="@+id/layout_vocabulary_german"
+        android:id="@+id/layout_vocabulary"
         style="@style/linearLayoutVerticalStyle"
-        app:layout_constraintBottom_toTopOf="@id/layout_vocabulary_english"
+        app:layout_constraintBottom_toTopOf="@id/button_submit_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,20 +33,6 @@
             android:layout_height="wrap_content"
             android:text="Deutsch"/>
 
-        <EditText
-            android:id="@+id/edittext_vocabulary_german"
-            style="@style/editTextStyle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_vocabulary_english"
-        style="@style/linearLayoutVerticalStyle"
-        app:layout_constraintBottom_toTopOf="@id/button_submit_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_vocabulary_german">
 
         <TextView
             android:id="@+id/textview_vocabulary_english"
@@ -55,11 +41,12 @@
             android:layout_height="wrap_content"
             android:text="Englisch" />
 
-        <EditText
-            android:id="@+id/edittext_vocabulary_english"
-            style="@style/editTextStyle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"/>
+        <GridLayout
+            android:id="@+id/layout_letters"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:columnCount="7"
+            android:orientation="vertical"/>
     </LinearLayout>
 
     <Button
@@ -69,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_vocabulary_english" />
+        app:layout_constraintTop_toBottomOf="@id/layout_vocabulary" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

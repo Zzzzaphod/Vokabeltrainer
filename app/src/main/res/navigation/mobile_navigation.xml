@@ -16,11 +16,11 @@
         android:label="@string/title_multiple_choice"
         tools:layout="@layout/fragment_multiple_choice" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/navigation_data_input"-->
-<!--        android:name="com.appzzzz.vokabeltrainer.ui.dataInput.DataInputFragment"-->
-<!--        android:label="@string/title_data_input"-->
-<!--        tools:layout="@layout/fragment_data_input" />-->
+    <fragment
+        android:id="@+id/navigation_spelling"
+        android:name="com.appzzzz.vokabeltrainer.ui.spelling.SpellingFragment"
+        android:label="@string/title_spelling"
+        tools:layout="@layout/fragment_spelling" />
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_voc_list"-->

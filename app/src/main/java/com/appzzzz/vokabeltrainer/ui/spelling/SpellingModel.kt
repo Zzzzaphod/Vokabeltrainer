@@ -1,10 +1,10 @@
-package com.appzzzz.vokabeltrainer.ui.dataInput
+package com.appzzzz.vokabeltrainer.ui.spelling
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DataInputViewModel : ViewModel() {
+class SpellingModel : ViewModel() {
 
     private val _textGermanVocabulary = MutableLiveData<String>().apply {
         value = "Deutsche Vokabel"
